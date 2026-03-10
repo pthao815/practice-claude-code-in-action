@@ -14,11 +14,33 @@ npm run db:reset       # Reset database (drops all data)
 npx prisma studio      # Open Prisma GUI to inspect DB
 ```
 
-The `dev` script uses `node-compat.cjs` via `NODE_OPTIONS` to polyfill Node.js globals — do not remove this.
+### Running the Development Server
+
+```bash
+npm run dev
+```
+
+- Starts Next.js on **http://localhost:3000** with Turbopack for fast hot reload.
+- Requires `ANTHROPIC_API_KEY` in `.env` for real AI responses. If missing, the app uses a `MockLanguageModel` returning hardcoded demo components.
+- The script loads `node-compat.cjs` via `NODE_OPTIONS` to polyfill Node.js globals — **do not remove this**.
+
+To run in the background and write logs to `logs.txt`:
+
+```bash
+npm run dev:daemon
+```
+
+First-time setup before running the server:
+
+```bash
+npm run setup   # installs deps, generates Prisma client, runs DB migrations
+cp .env .env.local
+# then set ANTHROPIC_API_KEY in .env
+```
 
 ## Environment
 
-- Copy `.env` and set `ANTHROPIC_API_KEY` for real AI responses.
+- Copy `.env` to `.env.local` and set `ANTHROPIC_API_KEY` for real AI responses.
 - If `ANTHROPIC_API_KEY` is empty/missing, the app falls back to a `MockLanguageModel` that returns hardcoded demo components — useful for UI work without API costs.
 
 ## Architecture
