@@ -1,5 +1,3 @@
-// Home route: redirects authenticated users to their most recent project (or creates one),
-// and renders the main UI for anonymous users.
 import { getUser } from "@/actions";
 import { getProjects } from "@/actions/get-projects";
 import { createProject } from "@/actions/create-project";

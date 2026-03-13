@@ -56,25 +56,6 @@ Open [http://localhost:3000](http://localhost:3000)
 - Component persistence for registered users
 - Export generated code
 
-## Architecture
-
-User prompts flow through a streaming AI pipeline and render live in the browser:
-
-```
-User prompt → ChatProvider → POST /api/chat
-  → Claude streams tool calls (str_replace_editor, file_manager)
-  → FileSystemProvider applies changes to VirtualFileSystem (in-memory)
-  → PreviewFrame compiles JSX with Babel → renders in sandboxed iframe
-  → On completion: project saved to SQLite via Prisma
-```
-
-**Key abstractions:**
-
-- **VirtualFileSystem** — an in-memory JSON file store sent with every request; nothing is written to disk
-- **AI Tools** — two Zod-validated tools Claude calls to create/patch files (`str_replace_editor`) or rename/delete them (`file_manager`)
-- **PreviewFrame** — compiles JSX in-browser using Babel standalone and renders it in a sandboxed iframe with no build step
-- **Contexts** — `FileSystemProvider` owns VFS state; `ChatProvider` wraps Vercel AI SDK `useChat()` and keeps the two in sync
-
 ## Tech Stack
 
 - Next.js 15 with App Router

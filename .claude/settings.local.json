@@ -1,8 +1,7 @@
 {
   "permissions": {
     "allow": [
-      "Bash(git -C \"E:/TLDH/Ki2Nam4/TTChuyenSau/uigen\" status)",
-      "Bash(git -C \"E:/TLDH/Ki2Nam4/TTChuyenSau/uigen\" log --oneline -10)"
+      "Bash(git add:*)"
     ]
   }
 }
