@@ -284,29 +284,28 @@ export default ContactForm;`;
       case "card":
         return `import React from 'react';
 
-const Card = ({ 
-  title = "Welcome to Our Service", 
-  description = "Discover amazing features and capabilities that will transform your experience.",
-  imageUrl,
-  actions 
+const Card = ({
+  title = "Ship faster.",
+  label = "Pro Plan",
+  price = "$49",
+  period = "/mo",
+  description = "Everything you need to build, launch, and scale your next product.",
+  actions
 }) => {
   return (
-    <div className="bg-white rounded-lg shadow-md overflow-hidden">
-      {imageUrl && (
-        <img 
-          src={imageUrl} 
-          alt={title}
-          className="w-full h-48 object-cover"
-        />
-      )}
-      <div className="p-6">
-        <h3 className="text-xl font-semibold mb-2">{title}</h3>
-        <p className="text-gray-600 mb-4">{description}</p>
-        {actions && (
-          <div className="mt-4">
-            {actions}
+    <div className="relative p-px rounded-2xl bg-gradient-to-br from-violet-500 via-fuchsia-500 to-pink-500 shadow-2xl shadow-violet-500/25">
+      <div className="relative bg-slate-900 rounded-2xl p-8 overflow-hidden">
+        <div className="absolute -top-10 -right-10 w-40 h-40 bg-violet-500/20 rounded-full blur-3xl" />
+        <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-fuchsia-500/10 rounded-full blur-3xl" />
+        <div className="relative">
+          <span className="text-xs font-semibold tracking-widest uppercase text-violet-400">{label}</span>
+          <div className="mt-4 flex items-baseline gap-1">
+            <span className="text-6xl font-black text-white tracking-tighter">{price}</span>
+            <span className="text-slate-400 font-medium">{period}</span>
           </div>
-        )}
+          <p className="mt-3 text-slate-400 leading-relaxed text-sm">{description}</p>
+          {actions && <div className="mt-8">{actions}</div>}
+        </div>
       </div>
     </div>
   );
@@ -392,14 +391,12 @@ export default Counter;`;
 
 export default function App() {
   return (
-    <div className="min-h-screen bg-gray-100 flex items-center justify-center p-8">
-      <div className="w-full max-w-md">
-        <Card 
-          title="Amazing Product"
-          description="This is a fantastic product that will change your life. Experience the difference today!"
+    <div className="min-h-screen bg-slate-950 bg-[radial-gradient(#1e1b4b_1px,transparent_1px)] bg-[size:24px_24px] flex items-center justify-center p-8">
+      <div className="w-full max-w-sm">
+        <Card
           actions={
-            <button className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition-colors">
-              Learn More
+            <button className="w-full py-3 rounded-xl bg-gradient-to-r from-violet-500 to-fuchsia-500 text-white font-semibold hover:opacity-90 active:scale-95 transition-all duration-150">
+              Get started
             </button>
           }
         />
